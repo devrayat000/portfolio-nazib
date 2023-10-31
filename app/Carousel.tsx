@@ -37,7 +37,7 @@ export default function Carousel(props: CarouselProps) {
             return (
               <div
                 key={image.id}
-                className="embla__slide grid place-items-center bg-slate-800 flex-[0_0_100%] w-full aspect-video"
+                className="embla__slide relative grid place-items-center bg-slate-800 flex-[0_0_100%] w-full aspect-video"
               >
                 <Image src={image.url} alt={image.id} fill />
               </div>
