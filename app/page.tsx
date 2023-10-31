@@ -1,14 +1,14 @@
-import Image from "next/image";
-import Carousel from "./Carousel";
 import SkillPage from "./skill/page";
 import EducationPage from "./education/page";
 import ExperiencePage from "./experience/page";
+import AboutPage from "./about/page";
+import Slideshow from "./CarouselLoader";
 
 export default function Home() {
   return (
     <main>
       <section className="mt-4">
-        <Carousel />
+        <Slideshow />
       </section>
       {/* <section>
         <ol className="relative border-l border-gray-200 dark:border-gray-700">
@@ -104,6 +104,9 @@ export default function Home() {
           </li>
         </ol>
       </section> */}
+      <section className="mt-20">
+        <AboutPage />
+      </section>
       <section className="mt-20">
         <SkillPage />
       </section>

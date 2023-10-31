@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, use } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
@@ -8,7 +8,17 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 
-export default function Carousel() {
+interface SlideshowImage {
+  id: string;
+  url: string;
+}
+
+export interface CarouselProps {
+  images: Promise<SlideshowImage[] | undefined>;
+}
+
+export default function Carousel(props: CarouselProps) {
+  const images = use(props.images);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
 
   const scrollPrev = useCallback(() => {
@@ -23,7 +33,17 @@ export default function Carousel() {
     <div className="embla overflow-hidden relative w-full">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container flex">
-          <div className="embla__slide grid place-items-center bg-slate-800 flex-[0_0_100%] w-full aspect-video">
+          {images?.map((image) => {
+            return (
+              <div
+                key={image.id}
+                className="embla__slide grid place-items-center bg-slate-800 flex-[0_0_100%] w-full aspect-video"
+              >
+                <Image src={image.url} alt={image.id} fill />
+              </div>
+            );
+          })}
+          {/* <div className="embla__slide grid place-items-center bg-slate-800 flex-[0_0_100%] w-full aspect-video">
             Slide 1
           </div>
           <div className="embla__slide grid place-items-center bg-slate-800 flex-[0_0_100%] w-full aspect-video">
@@ -31,7 +51,7 @@ export default function Carousel() {
           </div>
           <div className="embla__slide grid place-items-center bg-slate-800 flex-[0_0_100%] w-full aspect-video">
             Slide 3
-          </div>
+          </div> */}
         </div>
       </div>
       <Button
