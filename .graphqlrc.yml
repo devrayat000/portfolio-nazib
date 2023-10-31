@@ -1,0 +1,11 @@
+schema: https://ap-south-1.cdn.hygraph.com/content/clmxg2h7x1ijc01upaulp7emx/master
+documents: ./app/**/*.{ts,tsx}
+
+extensions:
+  codegen:
+    override: true
+    generates:
+      ./lib/generated/graphql.ts:
+        plugins:
+          - typescript
+          - typescript-operations
