@@ -4,6 +4,8 @@ import ExperiencePage from "./experience/page";
 import AboutPage from "./about/page";
 import Slideshow from "./CarouselLoader";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <main>

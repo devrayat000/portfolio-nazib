@@ -24,6 +24,8 @@ export const EXPERIENCE_QUERY = gql`
   }
 `;
 
+export const dynamic = "force-dynamic";
+
 export default function ExperiencePage() {
   return (
     <main id="skills">

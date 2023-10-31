@@ -24,6 +24,8 @@ export const ABOUT_QUERY = gql`
   }
 `;
 
+export const dynamic = "force-dynamic";
+
 export default function AboutPage() {
   const { profile } = use(gClient.request<AboutMeQuery>(ABOUT_QUERY));
 

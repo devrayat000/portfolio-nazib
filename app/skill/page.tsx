@@ -22,6 +22,8 @@ export const SKILLS_QUERY = gql`
   }
 `;
 
+export const dynamic = "force-dynamic";
+
 export default function SkillPage() {
   return (
     <main id="skills">

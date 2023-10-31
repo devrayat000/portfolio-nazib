@@ -24,6 +24,8 @@ export const EDUCATION_QUERY = gql`
   }
 `;
 
+export const dynamic = "force-dynamic";
+
 export default function EducationPage() {
   return (
     <main id="skills">
