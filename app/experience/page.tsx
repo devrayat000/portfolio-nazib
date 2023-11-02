@@ -70,7 +70,7 @@ async function Experiences() {
       <time className="block mb-2 text-sm font-normal leading-none dark:text-gray-500">
         {experience.during}
       </time>
-      <div className="mt-6 prose-ul:list-disc prose-ul:pl-6 dark:text-slate-400">
+      <div className="mt-6 prose max-w-full prose-ul:list-disc prose-ul:pl-6 dark:text-slate-400">
         <RichText content={experience.description.raw} />
       </div>
     </li>

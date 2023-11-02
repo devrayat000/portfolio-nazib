@@ -6,11 +6,12 @@ export async function getYoutubeInfo(id: string) {
   return {
     id: info.videoDetails.videoId,
     title: info.videoDetails.title,
-    thumbnail: info.videoDetails.thumbnails[0].url,
+    thumbnail:
+      info.videoDetails.thumbnails[info.videoDetails.thumbnails.length - 1].url,
     description: info.videoDetails.description,
     embded: info.videoDetails.embed?.iframeUrl,
     duration: new Duration({
       seconds: Number(info.videoDetails.lengthSeconds),
-    }),
+    }).toJson(),
   };
 }

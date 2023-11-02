@@ -64,7 +64,7 @@ export default function Header() {
             <NavigationMenuContent>
               <ul className="p-1">
                 <li>
-                  <Link href="/skills" legacyBehavior passHref>
+                  <Link href="/projects" legacyBehavior passHref>
                     <NavigationMenuLink
                       className={cn(navigationMenuTriggerStyle(), "w-full")}
                     >
@@ -73,7 +73,7 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/skills" legacyBehavior passHref>
+                  <Link href="/projects/rover" legacyBehavior passHref>
                     <NavigationMenuLink
                       className={cn(navigationMenuTriggerStyle(), "w-max")}
                     >
@@ -82,7 +82,7 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/skills" legacyBehavior passHref>
+                  <Link href="/projects/thesis" legacyBehavior passHref>
                     <NavigationMenuLink
                       className={cn(navigationMenuTriggerStyle(), "w-full")}
                     >

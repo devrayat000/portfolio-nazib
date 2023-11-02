@@ -31,4 +31,12 @@ export default class Duration implements IDuration {
       this.minutes -= 60;
     }
   }
+
+  toJson() {
+    return {
+      hours: this.hours,
+      minutes: this.minutes,
+      seconds: this.seconds,
+    };
+  }
 }

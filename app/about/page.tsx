@@ -55,7 +55,7 @@ export default function AboutPage() {
               {profile.name}
             </h2>
 
-            <div className="mt-6 prose-ul:list-disc prose-ul:pl-6 dark:text-slate-200 prose-p:text-lg prose-li:text-lg">
+            <div className="mt-6 prose max-w-full prose-ul:list-disc prose-ul:pl-6 dark:text-slate-200 prose-p:text-lg prose-li:text-lg">
               <RichText content={profile.about.raw} />
             </div>
           </section>
