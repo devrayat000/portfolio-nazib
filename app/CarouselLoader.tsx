@@ -6,7 +6,7 @@ import Carousel from "./Carousel";
 
 export const SLIDESHOW_QUERY = gql`
   query MySlideshows {
-    profile(where: { email: "nazibchowdhury000@gmail.com" }) {
+    profiles(first: 1) {
       id
       slideshowImages {
         id
@@ -17,7 +17,9 @@ export const SLIDESHOW_QUERY = gql`
 `;
 
 async function getSlideshowImages() {
-  const { profile } = await gClient.request<MySlideshowsQuery>(SLIDESHOW_QUERY);
+  const {
+    profiles: [profile],
+  } = await gClient.request<MySlideshowsQuery>(SLIDESHOW_QUERY);
   return profile?.slideshowImages;
 }
 

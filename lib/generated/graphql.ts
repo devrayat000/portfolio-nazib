@@ -904,7 +904,6 @@ export type Education = Node & {
   description: RichText;
   /** Get the document in other stages */
   documentInStages: Array<Education>;
-  /** e.g. March 2018 - May 2023 */
   during: Scalars['String']['output'];
   /** List of Education versions */
   history: Array<Version>;
@@ -2944,7 +2943,8 @@ export type Profile = Node & {
   createdBy?: Maybe<User>;
   /** Get the document in other stages */
   documentInStages: Array<Profile>;
-  email?: Maybe<Scalars['String']['output']>;
+  email: Scalars['String']['output'];
+  featuredVideos: Array<Scalars['String']['output']>;
   /** List of Profile versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -3048,7 +3048,8 @@ export type ProfileConnection = {
 export type ProfileCreateInput = {
   about: Scalars['RichTextAST']['input'];
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  email?: InputMaybe<Scalars['String']['input']>;
+  email: Scalars['String']['input'];
+  featuredVideos?: InputMaybe<Array<Scalars['String']['input']>>;
   name: Scalars['String']['input'];
   photo: AssetCreateOneInlineInput;
   slideshowImages?: InputMaybe<AssetCreateManyInlineInput>;
@@ -3126,6 +3127,16 @@ export type ProfileManyWhereInput = {
   email_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   email_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  featuredVideos?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  featuredVideos_contains_all?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  featuredVideos_contains_none?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  featuredVideos_contains_some?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  featuredVideos_not?: InputMaybe<Array<Scalars['String']['input']>>;
   id?: InputMaybe<Scalars['ID']['input']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']['input']>;
@@ -3210,6 +3221,8 @@ export enum ProfileOrderByInput {
   CreatedAtDesc = 'createdAt_DESC',
   EmailAsc = 'email_ASC',
   EmailDesc = 'email_DESC',
+  FeaturedVideosAsc = 'featuredVideos_ASC',
+  FeaturedVideosDesc = 'featuredVideos_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   NameAsc = 'name_ASC',
@@ -3223,6 +3236,7 @@ export enum ProfileOrderByInput {
 export type ProfileUpdateInput = {
   about?: InputMaybe<Scalars['RichTextAST']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
+  featuredVideos?: InputMaybe<Array<Scalars['String']['input']>>;
   name?: InputMaybe<Scalars['String']['input']>;
   photo?: InputMaybe<AssetUpdateOneInlineInput>;
   slideshowImages?: InputMaybe<AssetUpdateManyInlineInput>;
@@ -3247,6 +3261,7 @@ export type ProfileUpdateManyInlineInput = {
 
 export type ProfileUpdateManyInput = {
   about?: InputMaybe<Scalars['RichTextAST']['input']>;
+  featuredVideos?: InputMaybe<Array<Scalars['String']['input']>>;
   name?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -3347,6 +3362,16 @@ export type ProfileWhereInput = {
   email_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   email_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  featuredVideos?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  featuredVideos_contains_all?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  featuredVideos_contains_none?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  featuredVideos_contains_some?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  featuredVideos_not?: InputMaybe<Array<Scalars['String']['input']>>;
   id?: InputMaybe<Scalars['ID']['input']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']['input']>;
@@ -5134,7 +5159,6 @@ export type SkillUpdateManyInlineInput = {
 
 export type SkillUpdateManyInput = {
   description?: InputMaybe<Scalars['RichTextAST']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type SkillUpdateManyWithNestedWhereInput = {
@@ -5308,6 +5332,7 @@ export type SkillWhereStageInput = {
 /** References Skill record uniquely */
 export type SkillWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Stage system enumeration */
@@ -5826,12 +5851,12 @@ export enum _SystemDateTimeFieldVariation {
 export type MySlideshowsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MySlideshowsQuery = { __typename?: 'Query', profile?: { __typename?: 'Profile', id: string, slideshowImages: Array<{ __typename?: 'Asset', id: string, url: string }> } | null };
+export type MySlideshowsQuery = { __typename?: 'Query', profiles: Array<{ __typename?: 'Profile', id: string, slideshowImages: Array<{ __typename?: 'Asset', id: string, url: string }> }> };
 
 export type AboutMeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AboutMeQuery = { __typename?: 'Query', profile?: { __typename?: 'Profile', id: string, name: string, email?: string | null, about: { __typename?: 'RichText', raw: any }, photo: { __typename?: 'Asset', id: string, url: string } } | null };
+export type AboutMeQuery = { __typename?: 'Query', profiles: Array<{ __typename?: 'Profile', id: string, name: string, email: string, about: { __typename?: 'RichText', raw: any }, photo: { __typename?: 'Asset', id: string, url: string } }> };
 
 export type EducationsQueryVariables = Exact<{ [key: string]: never; }>;
 

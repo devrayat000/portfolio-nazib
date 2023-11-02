@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,7 +15,13 @@ import { cn } from "~/lib/utils";
 
 export default function Header() {
   return (
-    <header className="flex justify-center">
+    <header className="flex justify-center items-center sticky top-0 bg-background z-[1500] min-h-[3.5rem] shadow-md shadow-slate-500/10 gap-20">
+      <div className="animate-logo-flip will-change-transform">
+        <Link href="/" className="font-black text-4xl">
+          N
+        </Link>
+      </div>
+
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>

@@ -9,7 +9,7 @@ import type { SkillsQuery } from "~/lib/generated/graphql";
 
 export const SKILLS_QUERY = gql`
   query Skills {
-    skills {
+    skills(orderBy: createdAt_DESC) {
       id
       title
       coverImage {

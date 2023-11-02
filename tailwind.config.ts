@@ -1,5 +1,4 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -65,12 +64,18 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        "logo-flip": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(90deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "logo-flip":
+          "logo-flip 5s cubic-bezier(0.75,0.15,0.25,0.85) infinite alternate",
       },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
-};
+} satisfies import("tailwindcss").Config;

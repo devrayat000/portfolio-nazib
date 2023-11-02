@@ -9,7 +9,7 @@ import { EducationsQuery } from "~/lib/generated/graphql";
 
 export const EDUCATION_QUERY = gql`
   query Educations {
-    educations {
+    educations(orderBy: createdAt_DESC) {
       id
       institution
       degree

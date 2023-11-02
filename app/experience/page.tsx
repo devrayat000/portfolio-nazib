@@ -9,7 +9,7 @@ import { ExperiencesQuery } from "~/lib/generated/graphql";
 
 export const EXPERIENCE_QUERY = gql`
   query Experiences {
-    experiences {
+    experiences(orderBy: createdAt_DESC) {
       id
       post
       organization

@@ -5203,6 +5203,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"m3u8stream@npm:^0.8.6":
+  version: 0.8.6
+  resolution: "m3u8stream@npm:0.8.6"
+  dependencies:
+    miniget: "npm:^4.2.2"
+    sax: "npm:^1.2.4"
+  checksum: 6efb90aa392caf24142eafb88e6f9204655c859fbb3a61f2e6d81d0298d6357a962f392423187f686416bd630733ce461d0d45198a9c0694195dda59d79ec492
+  languageName: node
+  linkType: hard
+
 "make-fetch-happen@npm:^11.0.3":
   version: 11.1.1
   resolution: "make-fetch-happen@npm:11.1.1"
@@ -5266,6 +5276,13 @@ __metadata:
   version: 2.1.0
   resolution: "mimic-fn@npm:2.1.0"
   checksum: d2421a3444848ce7f84bd49115ddacff29c15745db73f54041edc906c14b131a38d05298dae3081667627a59b2eb1ca4b436ff2e1b80f69679522410418b478a
+  languageName: node
+  linkType: hard
+
+"miniget@npm:^4.2.2":
+  version: 4.2.3
+  resolution: "miniget@npm:4.2.3"
+  checksum: fac25ed0b64e72d6383698f7416b6e1f23f91a48cd9a2abea8b4d284784329cc1442346ae0fddd3b69d2a846122997eb22af4b0b9176f25efed6d6dce9c1d6e0
   languageName: node
   linkType: hard
 
@@ -6005,6 +6022,7 @@ __metadata:
     tailwindcss: "npm:^3.3.5"
     tailwindcss-animate: "npm:^1.0.7"
     typescript: "npm:^5.2.2"
+    ytdl-core: "npm:^4.11.5"
   languageName: unknown
   linkType: soft
 
@@ -6493,6 +6511,13 @@ __metadata:
   version: 2.1.2
   resolution: "safer-buffer@npm:2.1.2"
   checksum: 7eaf7a0cf37cc27b42fb3ef6a9b1df6e93a1c6d98c6c6702b02fe262d5fcbd89db63320793b99b21cb5348097d0a53de81bd5f4e8b86e20cc9412e3f1cfb4e83
+  languageName: node
+  linkType: hard
+
+"sax@npm:^1.1.3, sax@npm:^1.2.4":
+  version: 1.3.0
+  resolution: "sax@npm:1.3.0"
+  checksum: bb571b31d30ecb0353c2ff5f87b117a03e5fb9eb4c1519141854c1a8fbee0a77ddbe8045f413259e711833aa03da210887df8527d19cdc55f299822dbf4b34de
   languageName: node
   linkType: hard
 
@@ -7624,5 +7649,16 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: f77b3d8d00310def622123df93d4ee654fc6a0096182af8bd60679ddcdfb3474c56c6c7190817c84a2785648cdee9d721c0154eb45698c62176c322fb46fc700
+  languageName: node
+  linkType: hard
+
+"ytdl-core@npm:^4.11.5":
+  version: 4.11.5
+  resolution: "ytdl-core@npm:4.11.5"
+  dependencies:
+    m3u8stream: "npm:^0.8.6"
+    miniget: "npm:^4.2.2"
+    sax: "npm:^1.1.3"
+  checksum: 2a5a4ddb58f546a9ec72a6b8fadc48944f49caf7a902e6e9e833fc7ab7009a906463c3e6b6c2c40af6172bada72bcae56af4f1564614d6a705f1a7257b21d0c6
   languageName: node
   linkType: hard

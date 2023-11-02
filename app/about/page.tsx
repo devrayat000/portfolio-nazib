@@ -9,7 +9,7 @@ import ContactInfo from "./ContactInfo";
 
 export const ABOUT_QUERY = gql`
   query AboutMe {
-    profile(where: { email: "nazibchowdhury000@gmail.com" }) {
+    profiles(first: 1) {
       id
       name
       email
@@ -27,7 +27,9 @@ export const ABOUT_QUERY = gql`
 export const dynamic = "force-dynamic";
 
 export default function AboutPage() {
-  const { profile } = use(gClient.request<AboutMeQuery>(ABOUT_QUERY));
+  const {
+    profiles: [profile],
+  } = use(gClient.request<AboutMeQuery>(ABOUT_QUERY));
 
   if (!profile) {
     return null;

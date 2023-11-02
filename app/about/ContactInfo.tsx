@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 export default function ContactInfo() {
   const pathname = usePathname();
 
-  if (!pathname.includes("about")) {
+  if (!pathname?.includes("about")) {
     return null;
   }
 
