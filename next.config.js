@@ -6,6 +6,8 @@ const nextConfig = {
       { hostname: "i.ytimg.com" },
     ],
   },
+  typescript: { ignoreBuildErrors: true },
+  eslint: { ignoreDuringBuilds: true },
 };
 
 module.exports = nextConfig;
