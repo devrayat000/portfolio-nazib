@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import SkillPage from "./skill/page";
 import EducationPage from "./education/page";
 import ExperiencePage from "./experience/page";
@@ -6,6 +8,11 @@ import Slideshow from "./CarouselLoader";
 import FeaturedVideos from "./FeaturedVideos";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Nazib Chowdhury",
+  description: "A personal portfolio website of Nazib Chowdhury",
+};
 
 export default function Home() {
   return (

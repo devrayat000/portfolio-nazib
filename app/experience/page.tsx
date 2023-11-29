@@ -3,6 +3,7 @@ import { gql } from "graphql-request";
 import Image from "next/image";
 import { Suspense } from "react";
 import { ExperienceLoader } from "~/components/common/loaders";
+import type { Metadata } from "next";
 
 import gClient from "~/lib/gClient";
 import { ExperiencesQuery } from "~/lib/generated/graphql";
@@ -25,6 +26,11 @@ export const EXPERIENCE_QUERY = gql`
 `;
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Nazib Chowdhury - Experience",
+  description: "A personal portfolio website of Nazib Chowdhury",
+};
 
 export default function ExperiencePage() {
   return (

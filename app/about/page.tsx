@@ -2,6 +2,7 @@ import { RichText } from "@graphcms/rich-text-react-renderer";
 import { gql } from "graphql-request";
 import Image from "next/image";
 import { use } from "react";
+import type { Metadata } from "next";
 
 import gClient from "~/lib/gClient";
 import type { AboutMeQuery } from "~/lib/generated/graphql";
@@ -25,6 +26,10 @@ export const ABOUT_QUERY = gql`
 `;
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Nazib Chowdhury - About",
+};
 
 export default function AboutPage() {
   const {

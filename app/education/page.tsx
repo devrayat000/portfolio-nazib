@@ -2,6 +2,7 @@ import { RichText } from "@graphcms/rich-text-react-renderer";
 import { gql } from "graphql-request";
 import Image from "next/image";
 import { Suspense } from "react";
+import type { Metadata } from "next";
 
 import gClient from "~/lib/gClient";
 import { ExperienceLoader } from "~/components/common/loaders";
@@ -25,6 +26,10 @@ export const EDUCATION_QUERY = gql`
 `;
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Nazib Chowdhury - Education",
+};
 
 export default function EducationPage() {
   return (
