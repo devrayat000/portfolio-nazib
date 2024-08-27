@@ -1,7 +1,7 @@
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import { gql } from "graphql-request";
 import Image from "next/image";
-import { Suspense } from "react";
+import { Suspense, use } from "react";
 
 import { SkillLoader } from "~/components/common/loaders";
 import gClient from "~/lib/gClient";
@@ -24,22 +24,27 @@ export const PROJECTS_QUERY = gql`
 
 export const dynamic = "force-dynamic";
 
-export default function ProjectsPage() {
+export default function ProjectsPage({
+  promise,
+}: {
+  promise?: Promise<ProjectsQuery>;
+}) {
+  const pr = promise ?? gClient.request<ProjectsQuery>(PROJECTS_QUERY);
   return (
     <main id="projects">
       <h1 className="text-center font-bold text-5xl">MY PROJECTS</h1>
 
       <div className="flex flex-col gap-6 mt-10">
         <Suspense fallback={<SkillLoader />}>
-          <Projects />
+          <Projects promise={pr} />
         </Suspense>
       </div>
     </main>
   );
 }
 
-async function Projects() {
-  const { projects } = await gClient.request<ProjectsQuery>(PROJECTS_QUERY);
+function Projects({ promise }: { promise: Promise<ProjectsQuery> }) {
+  const { projects } = use(promise);
 
   return projects.map((project) => (
     <div

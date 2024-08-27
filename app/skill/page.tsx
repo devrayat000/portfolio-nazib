@@ -1,7 +1,7 @@
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import { gql } from "graphql-request";
 import Image from "next/image";
-import { Suspense } from "react";
+import { Suspense, use } from "react";
 
 import { SkillLoader } from "~/components/common/loaders";
 import gClient from "~/lib/gClient";
@@ -24,7 +24,12 @@ export const SKILLS_QUERY = gql`
 
 export const dynamic = "force-dynamic";
 
-export default function SkillPage() {
+export default function SkillPage({
+  promise,
+}: {
+  promise?: Promise<SkillsQuery>;
+}) {
+  const pr = promise ?? gClient.request<SkillsQuery>(SKILLS_QUERY);
   return (
     <main id="skills">
       <h1 className="text-center font-bold text-5xl">MY SKILLSET</h1>
@@ -32,15 +37,15 @@ export default function SkillPage() {
 
       <div className="grid grid-cols-2 gap-12 mt-10">
         <Suspense fallback={<SkillLoader />}>
-          <Skills />
+          <Skills promise={pr} />
         </Suspense>
       </div>
     </main>
   );
 }
 
-async function Skills() {
-  const { skills } = await gClient.request<SkillsQuery>(SKILLS_QUERY);
+function Skills({ promise }: { promise: Promise<SkillsQuery> }) {
+  const { skills } = use(promise);
 
   return skills.map((skill) => (
     <div key={skill.id}>

@@ -1,7 +1,7 @@
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import { gql } from "graphql-request";
 import Image from "next/image";
-import { Suspense } from "react";
+import { Suspense, use } from "react";
 import type { Metadata } from "next";
 
 import gClient from "~/lib/gClient";
@@ -31,7 +31,12 @@ export const metadata: Metadata = {
   title: "Nazib Chowdhury - Education",
 };
 
-export default function EducationPage() {
+export default function EducationPage({
+  promise,
+}: {
+  promise?: Promise<EducationsQuery>;
+}) {
+  const pr = promise ?? gClient.request<EducationsQuery>(EDUCATION_QUERY);
   return (
     <main id="skills">
       <h1 className="text-center font-bold text-5xl">EDUCATION</h1>
@@ -39,7 +44,7 @@ export default function EducationPage() {
 
       <ol className="relative mt-16">
         <Suspense fallback={<ExperienceLoader />}>
-          <EducationQualifications />
+          <EducationQualifications promise={pr} />
           <hr className="bg-gray-700 absolute -left-6 top-0 h-full w-0.5 -z-10" />
         </Suspense>
       </ol>
@@ -47,10 +52,12 @@ export default function EducationPage() {
   );
 }
 
-async function EducationQualifications() {
-  const { educations } = await gClient.request<EducationsQuery>(
-    EDUCATION_QUERY
-  );
+function EducationQualifications({
+  promise,
+}: {
+  promise: Promise<EducationsQuery>;
+}) {
+  const { educations } = use(promise);
 
   return educations.map((education) => (
     <li className="mb-10 ml-10" key={education.id}>

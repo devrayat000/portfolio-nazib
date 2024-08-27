@@ -17,10 +17,16 @@ export const FEATURED_VIDEOS_QUERY = gql`
 
 export const dynamic = "force-dynamic";
 
-export default function FeaturedVideos() {
+export default function FeaturedVideos({
+  promise,
+}: {
+  promise?: Promise<MyFeaturedVideosQuery>;
+}) {
   const {
     profiles: [profile],
-  } = use(gClient.request<MyFeaturedVideosQuery>(FEATURED_VIDEOS_QUERY));
+  } = use(
+    promise ?? gClient.request<MyFeaturedVideosQuery>(FEATURED_VIDEOS_QUERY)
+  );
 
   if (!profile) {
     return null;

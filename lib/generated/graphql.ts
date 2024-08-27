@@ -28,7 +28,7 @@ export type Aggregate = {
 };
 
 /** Asset system model */
-export type Asset = Node & {
+export type Asset = Entity & Node & {
   __typename?: 'Asset';
   coverImageProject: Array<Project>;
   coverImageSkill: Array<Skill>;
@@ -917,7 +917,7 @@ export type DocumentVersion = {
   stage: Stage;
 };
 
-export type Education = Node & {
+export type Education = Entity & Node & {
   __typename?: 'Education';
   /** The time the document was created */
   createdAt: Scalars['DateTime']['output'];
@@ -1458,7 +1458,7 @@ export type Entity = {
   stage: Stage;
 };
 
-/** This enumeration holds all typenames that implement the Entity interface. Components implement the Entity interface. At the moment models are not supported, models are listed in this enum to avoid an empty enum without any components. */
+/** This enumeration holds all typenames that implement the Entity interface. Components and models implement the Entity interface. */
 export enum EntityTypeName {
   /** Asset system model */
   Asset = 'Asset',
@@ -1477,16 +1477,17 @@ export enum EntityTypeName {
   User = 'User'
 }
 
-/** Allows to specify input to query components directly */
+/** Allows to specify input to query models and components directly */
 export type EntityWhereInput = {
   /** The ID of an object */
   id: Scalars['ID']['input'];
+  locale?: InputMaybe<Locale>;
   stage: Stage;
   /** The Type name of an object */
   typename: EntityTypeName;
 };
 
-export type Experience = Node & {
+export type Experience = Entity & Node & {
   __typename?: 'Experience';
   /** The time the document was created */
   createdAt: Scalars['DateTime']['output'];
@@ -3284,7 +3285,7 @@ export type PageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-export type Profile = Node & {
+export type Profile = Entity & Node & {
   __typename?: 'Profile';
   about: RichText;
   /** The time the document was created */
@@ -3843,7 +3844,7 @@ export type ProfileWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
-export type Project = Node & {
+export type Project = Entity & Node & {
   __typename?: 'Project';
   coverImage: Asset;
   /** The time the document was created */
@@ -4481,6 +4482,7 @@ export type QueryEducationsConnectionArgs = {
 
 
 export type QueryEntitiesArgs = {
+  locales?: InputMaybe<Array<Locale>>;
   where: Array<EntityWhereInput>;
 };
 
@@ -4810,7 +4812,7 @@ export type RichText = {
   text: Scalars['String']['output'];
 };
 
-export type RoverDesign = Node & {
+export type RoverDesign = Entity & Node & {
   __typename?: 'RoverDesign';
   /** The time the document was created */
   createdAt: Scalars['DateTime']['output'];
@@ -5201,7 +5203,7 @@ export type RoverDesignWhereUniqueInput = {
 };
 
 /** Scheduled Operation system model */
-export type ScheduledOperation = Node & {
+export type ScheduledOperation = Entity & Node & {
   __typename?: 'ScheduledOperation';
   affectedDocuments: Array<ScheduledOperationAffectedDocument>;
   /** The time the document was created */
@@ -5636,7 +5638,7 @@ export type ScheduledOperationWhereUniqueInput = {
 };
 
 /** Scheduled Release system model */
-export type ScheduledRelease = Node & {
+export type ScheduledRelease = Entity & Node & {
   __typename?: 'ScheduledRelease';
   /** The time the document was created */
   createdAt: Scalars['DateTime']['output'];
@@ -6215,7 +6217,7 @@ export type ScheduledReleaseWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
-export type Skill = Node & {
+export type Skill = Entity & Node & {
   __typename?: 'Skill';
   coverImage: Asset;
   /** The time the document was created */
@@ -7033,7 +7035,7 @@ export type UnpublishLocaleInput = {
 };
 
 /** User system model */
-export type User = Node & {
+export type User = Entity & Node & {
   __typename?: 'User';
   /** The time the document was created */
   createdAt: Scalars['DateTime']['output'];
@@ -7553,6 +7555,11 @@ export type ExperiencesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ExperiencesQuery = { __typename?: 'Query', experiences: Array<{ __typename?: 'Experience', id: string, post: string, organization: string, during: string, logo: { __typename?: 'Asset', url: string }, description: { __typename?: 'RichText', raw: any } }> };
+
+export type BulkQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type BulkQueryQuery = { __typename?: 'Query', profiles: Array<{ __typename?: 'Profile', id: string, name: string, email: string, featuredVideos: Array<string>, about: { __typename?: 'RichText', raw: any }, photo: { __typename?: 'Asset', id: string, url: string }, slideshowImages: Array<{ __typename?: 'Asset', id: string, url: string }> }>, educations: Array<{ __typename?: 'Education', id: string, institution: string, degree: string, during: string, logo: { __typename?: 'Asset', url: string }, description: { __typename?: 'RichText', raw: any } }>, experiences: Array<{ __typename?: 'Experience', id: string, post: string, organization: string, during: string, logo: { __typename?: 'Asset', url: string }, description: { __typename?: 'RichText', raw: any } }>, projects: Array<{ __typename?: 'Project', id: string, title: string, coverImage: { __typename?: 'Asset', url: string }, description: { __typename?: 'RichText', raw: any } }>, skills: Array<{ __typename?: 'Skill', id: string, title: string, coverImage: { __typename?: 'Asset', url: string }, description: { __typename?: 'RichText', raw: any } }> };
 
 export type ProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 

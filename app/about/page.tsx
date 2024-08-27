@@ -31,10 +31,14 @@ export const metadata: Metadata = {
   title: "Nazib Chowdhury - About",
 };
 
-export default function AboutPage() {
+export default function AboutPage({
+  promise,
+}: {
+  promise?: Promise<AboutMeQuery>;
+}) {
   const {
     profiles: [profile],
-  } = use(gClient.request<AboutMeQuery>(ABOUT_QUERY));
+  } = use(promise ?? gClient.request<AboutMeQuery>(ABOUT_QUERY));
 
   if (!profile) {
     return null;

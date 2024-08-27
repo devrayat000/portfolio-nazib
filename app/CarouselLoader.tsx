@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import { Suspense } from "react";
+import { Suspense, use } from "react";
 import gClient from "~/lib/gClient";
 import { MySlideshowsQuery } from "~/lib/generated/graphql";
 import Carousel from "./Carousel";
@@ -16,23 +16,22 @@ export const SLIDESHOW_QUERY = gql`
   }
 `;
 
-async function getSlideshowImages() {
-  const {
-    profiles: [profile],
-  } = await gClient.request<MySlideshowsQuery>(SLIDESHOW_QUERY);
-  return profile?.slideshowImages;
-}
-
-export default function Slideshow() {
-  const slideshowImages = getSlideshowImages();
-
+export default function Slideshow({
+  promise,
+}: {
+  promise?: Promise<MySlideshowsQuery>;
+}) {
   return (
     <Suspense
       fallback={
         <div className="bg-slate-800 w-full aspect-video animate-pulse" />
       }
     >
-      <Carousel images={slideshowImages} />
+      <Carousel
+        images={(
+          promise ?? gClient.request<MySlideshowsQuery>(SLIDESHOW_QUERY)
+        ).then((res) => res.profiles[0].slideshowImages)}
+      />
     </Suspense>
   );
 }

@@ -1,7 +1,7 @@
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import { gql } from "graphql-request";
 import Image from "next/image";
-import { Suspense } from "react";
+import { Suspense, use } from "react";
 import { ExperienceLoader } from "~/components/common/loaders";
 import type { Metadata } from "next";
 
@@ -32,14 +32,19 @@ export const metadata: Metadata = {
   description: "A personal portfolio website of Nazib Chowdhury",
 };
 
-export default function ExperiencePage() {
+export default function ExperiencePage({
+  promise,
+}: {
+  promise?: Promise<ExperiencesQuery>;
+}) {
+  const pr = promise ?? gClient.request<ExperiencesQuery>(EXPERIENCE_QUERY);
   return (
     <main id="skills">
       <h1 className="text-center font-bold text-5xl">EXPERIENCE</h1>
 
       <ol className="relative mt-16">
         <Suspense fallback={<ExperienceLoader />}>
-          <Experiences />
+          <Experiences promise={pr} />
           <hr className="bg-gray-700 absolute -left-6 top-0 h-full w-0.5 -z-10" />
         </Suspense>
       </ol>
@@ -47,10 +52,8 @@ export default function ExperiencePage() {
   );
 }
 
-async function Experiences() {
-  const { experiences } = await gClient.request<ExperiencesQuery>(
-    EXPERIENCE_QUERY
-  );
+function Experiences({ promise }: { promise: Promise<ExperiencesQuery> }) {
+  const { experiences } = use(promise);
 
   return experiences.map((experience) => (
     <li className="mb-10 ml-10" key={experience.id}>
