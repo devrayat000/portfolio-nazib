@@ -94,18 +94,18 @@ export default async function Home() {
       <section className="mt-20">
         <AboutPage promise={extractPromise(bulkPromise, "profiles")} />
       </section>
-      <section className="mt-20">
+      {/* <section className="mt-20">
         <FeaturedVideos promise={extractPromise(bulkPromise, "profiles")} />
-      </section>
-      {/* <section className="mt-20">
+      </section> */}
+      <section className="mt-20">
         <SkillPage promise={extractPromise(bulkPromise, "skills")} />
-      </section> */}
-      {/* <section className="mt-20">
+      </section>
+      <section className="mt-20">
         <ExperiencePage promise={extractPromise(bulkPromise, "experiences")} />
-      </section> */}
-      {/* <section className="mt-20">
+      </section>
+      <section className="mt-20">
         <EducationPage promise={extractPromise(bulkPromise, "educations")} />
-      </section> */}
+      </section>
     </main>
   );
 }
