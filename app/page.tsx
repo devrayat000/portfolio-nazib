@@ -88,7 +88,7 @@ export default async function Home() {
 
   return (
     <main>
-      <section className="mt-4">
+      {/* <section className="mt-4">
         <Slideshow promise={extractPromise(bulkPromise, "profiles")} />
       </section>
       <section className="mt-20">
@@ -105,7 +105,7 @@ export default async function Home() {
       </section>
       <section className="mt-20">
         <EducationPage promise={extractPromise(bulkPromise, "educations")} />
-      </section>
+      </section> */}
     </main>
   );
 }
