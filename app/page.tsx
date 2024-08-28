@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { unstable_noStore as noStore } from "next/cache";
 
 import SkillPage from "./skill/page";
 import EducationPage from "./education/page";
@@ -60,16 +61,6 @@ export const BULK_QUERY = gql`
         raw
       }
     }
-    projects(orderBy: createdAt_DESC, where: { projectType: GENERAL }) {
-      id
-      title
-      coverImage {
-        url
-      }
-      description {
-        raw
-      }
-    }
     skills(orderBy: createdAt_DESC) {
       id
       title
@@ -91,7 +82,9 @@ function extractPromise<T extends object, Key extends keyof T>(
 }
 
 export default async function Home() {
+  noStore();
   const bulkPromise = gClient.request<BulkQueryQuery>(BULK_QUERY);
+  bulkPromise.then(console.log).catch(console.error);
 
   return (
     <main>
