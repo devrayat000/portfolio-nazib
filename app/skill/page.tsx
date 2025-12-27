@@ -1,6 +1,7 @@
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import { gql } from "graphql-request";
 import Image from "next/image";
+import { unstable_noStore as noStore } from "next/cache";
 import { Suspense, use } from "react";
 
 import { SkillLoader } from "~/components/common/loaders";
@@ -29,6 +30,7 @@ export default function SkillPage({
 }: {
   promise?: Promise<SkillsQuery>;
 }) {
+  noStore();
   const pr = promise ?? gClient.request<SkillsQuery>(SKILLS_QUERY);
   return (
     <main id="skills">
