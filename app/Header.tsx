@@ -94,12 +94,12 @@ export default function Header() {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
-          <li className="h-full w-px bg-border mx-2 self-stretch" />
+          <li className="w-px bg-border !mx-2 self-stretch" />
           <NavigationMenuItem>
             <NavigationMenuLink
               className={cn(
                 navigationMenuTriggerStyle(),
-                buttonVariants({ variant: "outline" })
+                buttonVariants({ variant: "destructive" })
               )}
               href="https://ca-central-1.graphassets.com/Aa5l2XCzR3msx2EyLKoTaz/cmjlmp5v91cdt06u4drn6c4fw?dl=true"
               download
