@@ -101,7 +101,7 @@ export default function Header() {
                 navigationMenuTriggerStyle(),
                 buttonVariants({ variant: "destructive" })
               )}
-              href="https://ca-central-1.graphassets.com/Aa5l2XCzR3msx2EyLKoTaz/cmjtcm0hx15pl07so64bv4lq4?dl=true"
+              href="https://ca-central-1.graphassets.com/Aa5l2XCzR3msx2EyLKoTaz/cmjtztwh91whf07sodke4jbyr?dl=true"
               download
             >
               Download CV
